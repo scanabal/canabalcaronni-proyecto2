@@ -3,18 +3,24 @@ import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, View, TextInput} from "react-native";
 
+function Regisimport { auth } from "../../firebase/config";
+import { useState } from "react";
+import { Pressable } from "react-native";
+import { Text, View, TextInput} from "react-native";
+
 function Register (props){
     const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
+    const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const [register, setRegister] = useState(false);
     const [RegisterError, setRegisterError] = useState("");
 
-    function onSubmit(user, email, pass){
-         auth.createUserWithEmailAndPassword(email,pass)
+    function onSubmit(user, email, password){
+         auth.createUserWithEmailAndPassword(email,password)
     .then( response => {
         //db collection?
         setRegister(true);
+        props.navigation.navigate("Login")
     })
     .catch( error => {
         setRegisterError('Fallo al registrarse.')
@@ -40,8 +46,8 @@ function Register (props){
         
         keyboardType='default'
         placeholder='usuario'
-        onChangeText= { text => setUsername(text) }
-        value={username}/>
+        onChangeText= { text => setUser(text) }
+        value={user}/>
        {/* style={styles.field} */}
         <TextInput 
         
@@ -52,7 +58,7 @@ function Register (props){
         {/* style={styles.field} */}
 
         <Pressable
-                onPress={() => onSubmit(email, password)}>
+                onPress={() => onSubmit(user, email, password)}>
 
                      <Text>Registrarme</Text>
                      {/* style={styles.buttonText} */}

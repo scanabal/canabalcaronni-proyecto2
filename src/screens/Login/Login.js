@@ -10,19 +10,24 @@ function Login(props) {
     const [login, setLogin] = useState(false)
     const [LoginError, setLoginError] = useState ("")
 
-    function onsubmit(email,pass){
-        if(pass.length < 8){
+    function onSubmit(email,password){
+        if(password.length < 8){
             alert("Password must have more than 8 characters")
             return
         }
 
-         auth.signInWithEmailAndPassword(email,pass)
+         auth.signInWithEmailAndPassword(email,password)
     .then((response) => {
          setLogin(true); 
           
     })
     .catch(error => {
-       
+        if(error.code === "auth/invalid-email"){
+            alert("Mail incorrecto")
+        }
+        if(error.code === "auth/internal-error"){
+            alert("Credenciales invalidas")
+        }
          setLoginError('Credenciales invalidas')
          console.log(error)
     })
@@ -63,7 +68,7 @@ return (
         value={password}/>
         {/* style={styles.input} */}
 
-        <Pressable onPress={() => onsubmit(email,pass)}>
+        <Pressable onPress={() => onSubmit(email,password)}>
             <Text > Login </Text>
             {/* style={styles.boton} */}
         </Pressable>
