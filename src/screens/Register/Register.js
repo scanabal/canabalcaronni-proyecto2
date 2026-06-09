@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, View, TextInput} from "react-native";
 
-function Register (email,pass){
+function Register (props){
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

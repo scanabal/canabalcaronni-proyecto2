@@ -71,6 +71,7 @@ return (
         <Pressable onPress={() => props.navigation.navigate("Register")}>
             <Text >No tengo cuenta, registrarme</Text>
             {/* style={styles.boton} */}
+            {/* XQ NO FUNCIONA ONPRESS */}
         </Pressable>
     </View>
 );

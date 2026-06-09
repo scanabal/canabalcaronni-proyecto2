@@ -6,8 +6,12 @@ const Stack = createNativeStackNavigator()
 
 function StackMenu(){
     
-       
+return(
     
-}
+       <NavigationContainer>
+            <Stack.Screen name="Login" component= { Login }/>
+            <Stack.Screen name="Register" component= { Register }/>
+        </NavigationContainer>
+)}
 
-export default StackMenu
+export default StackMenu;
