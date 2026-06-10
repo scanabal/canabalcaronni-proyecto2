@@ -3,11 +3,6 @@ import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, View, TextInput} from "react-native";
 
-function Regisimport { auth } from "../../firebase/config";
-import { useState } from "react";
-import { Pressable } from "react-native";
-import { Text, View, TextInput} from "react-native";
-
 function Register (props){
     const [email, setEmail] = useState("");
     const [user, setUser] = useState("");
