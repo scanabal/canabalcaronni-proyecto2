@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { db, auth } from '../firebase/config';
+import Post from './../../components/Post/Post'
 
 function Home(props) {
     const [posts, setPosts] = useState([]);
