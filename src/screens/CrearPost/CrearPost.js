@@ -10,7 +10,7 @@ function CrearPost(props) {
             email: auth.currentUser.email,
             descripcion: descripcion,
             fecha: Date.now(),
-            likes: [ ], 
+            likes: [], 
         })
         .then(() => {
             setDescripcion('');

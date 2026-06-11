@@ -5,36 +5,39 @@ import Post from './../../components/Post/Post'
 
 function Home(props) {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             if (!user) {
                 props.navigation.navigate('Login');
             }
-        });}, []);
+        });
 
-    useEffect(() => {
-    db.collection('posts').orderBy('fecha', 'desc').onSnapshot(docs => {
-        let postsArray = [];
-        docs.forEach(doc => {
-            postsArray.push({
-                id: doc.id,
-                data: doc.data() 
+        db.collection('posts').orderBy('fecha', 'desc').onSnapshot(docs => {
+            let postsArray = [];
+            docs.forEach(doc => {
+                postsArray.push({
+                    id: doc.id,
+                    data: doc.data() 
+                });
             });
-        });
-        setPosts(postsArray);
-        });
-    }, []);
+            setPosts(postsArray)
+            setLoading(false);
+            });}
+        , []);
 
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Home</Text>
+            {loading ? <ActivityIndicator style={styles.margen}/> : 
             <FlatList
                 data={posts}
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
                     <Post post={item} navigation={props.navigation} />
                 )}
-            />
+            />}
         </View>
     );
 }
