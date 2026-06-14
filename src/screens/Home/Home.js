@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { db, auth } from '../firebase/config';
 import Post from './../../components/Post/Post'
 
@@ -12,8 +12,9 @@ function Home(props) {
             if (!user) {
                 props.navigation.navigate('Login');
             }
-        });
+        });}, [])
 
+    useEffect(() => {
         db.collection('posts').orderBy('fecha', 'desc').onSnapshot(docs => {
             let postsArray = [];
             docs.forEach(doc => {
@@ -30,8 +31,9 @@ function Home(props) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Home</Text>
-            {loading ? <ActivityIndicator style={styles.margen}/> : 
-            <FlatList
+            {loading 
+            ? <ActivityIndicator style={styles.margen}/> 
+            : <FlatList
                 data={posts}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
