@@ -9,7 +9,7 @@ function CrearPost(props) {
         db.collection('posts').add({
             email: auth.currentUser.email,
             descripcion: descripcion,
-            fecha: Date.now(),
+            createdAt: Date.now(),
             likes: [], 
         })
         .then(() => {
