@@ -39,7 +39,7 @@ useEffect(
         auth.onAuthStateChanged(
             user => {
                 if (user) {
-                props.navigation.navigate("homeMenu")
+                // props.navigation.navigate("homeMenu")
                 }
             }
         )

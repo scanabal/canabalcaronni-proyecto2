@@ -2,16 +2,14 @@ import app from 'firebase/app';
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAiXrIu8UA435JyBoVHvqGOv4w1Nb3iNCg",
-  authDomain: "proyecto-1-cc4eb.firebaseapp.com",
-  databaseURL: "https://proyecto-1-cc4eb-default-rtdb.firebaseio.com",
-  projectId: "proyecto-1-cc4eb",
-  storageBucket: "proyecto-1-cc4eb.firebasestorage.app",
-  messagingSenderId: "855085918177",
-  appId: "1:855085918177:web:af99d6c31b24ddda81d4a0",
-  measurementId: "G-RQMM1RRP0C"
+  apiKey: "AIzaSyCacmn7qoKkLVd4NnhrH_gvk3j0duBXFeo",
+  authDomain: "canabalcaronni-proyecto2.firebaseapp.com",
+  projectId: "canabalcaronni-proyecto2",
+  storageBucket: "canabalcaronni-proyecto2.firebasestorage.app",
+  messagingSenderId: "808568984208",
+  appId: "1:808568984208:web:205c96eb623635219bbe15",
+  measurementId: "G-7QGWBJS4CK"
 };
-
 
 app .initializeApp(firebaseConfig);
 
