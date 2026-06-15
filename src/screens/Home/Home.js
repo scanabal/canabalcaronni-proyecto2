@@ -1,50 +1,52 @@
-//  import { useState, useEffect } from 'react';
-//  import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
-//  import { db, auth } from '../../firebase/config';
-//  import Post from './../../components/Post/Post'
+// import { useState, useEffect } from 'react';
+// import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
+// import { db, auth } from '../../firebase/config';
+// import Post from './../../components/Post/Post'
 
-//  function Home(props) {
-//      const [posts, setPosts] = useState([]);
-//      const [loading, setLoading] = useState(true)
+// function Home(props) {
 
-//      useEffect(() => {
-//          auth.onAuthStateChanged(user => {
-//              if (!user) {
-//                  props.navigation.navigate('Login');
-//              }
-//          });}, [])
+//     const [posts, setPosts] = useState([]);
+//     const [loading, setLoading] = useState(true)
 
-//      useEffect(() => {
-//          db.collection('posts').orderBy('fecha', 'desc').onSnapshot(docs => {
-//              let postsArray = [];
-//              docs.forEach(doc => {
-//                  postsArray.push({
-//                      id: doc.id,
-//                      data: doc.data() 
-//                  });
-//              });
-//              setPosts(postsArray)
-//              setLoading(false);
-//              });}
-//          , []);
+//     useEffect(() => {
+//         auth.onAuthStateChanged(user => {
+//             if (!user) {
+//                 props.navigation.navigate('Login');
+//             }
+//         });}, [])
 
-//      return (
-//          <View style={styles.container}>
-//              <Text style={styles.title}>Home</Text>
-//              {loading 
-//              ? <ActivityIndicator style={styles.margen}/> 
-//              : <FlatList
-//                  data={posts}
-//                  keyExtractor={item => item.id.toString()}
-//                  renderItem={({ item }) => (
-//                      <Post post={item} navigation={props.navigation} />
-//                  )}
-//              />}
-//          </View>
-//      );
-//  }
+//     useEffect(() => {
+//         db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
+//             let postsArray = [];
+//             docs.forEach(doc => {
+//                 postsArray.push({
+//                     id: doc.id,
+//                     data: doc.data() 
+//                 });
+//             });
+//             setPosts(postsArray)
+//             setLoading(false);
+//             }
+//         );}
+//         , []);
 
-// // //styles
-// // //styles.container
+//     return (
+//         <View>
+//             <Text>Home</Text>
+//             {loading 
+//             ? <ActivityIndicator/> 
+//             : <FlatList
+//                 data={posts}
+//                 keyExtractor={item => item.id.toString()}
+//                 renderItem={({ item }) => (
+//                     <Post post={item} navigation={props.navigation} />
+//                 )}
+//             />}
+//         </View>
+//     );
+// }
 
-//  export default Home;
+// // // //styles
+// // // //styles.container
+
+// export default Home;

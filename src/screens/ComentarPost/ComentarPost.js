@@ -1,28 +1,27 @@
-import { auth } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
 import { useState, useEffect } from 'react';
 import { Pressable } from "react-native";
 import { Text, View, TextInput} from "react-native";
 import { ActivityIndicator, FlatList } from "react-native-web";
 
-function ComentarPost(props)
-const [comentario, setComentario] = useState("")
-const [comentarios, setComentarios] = useState([])
-const [post, setPost] = useStete("")
+function ComentarPost(props){
+   const [comentario, setComentario] = useState("")
+   const [comentarios, setComentarios] = useState([])
+   const [post, setPost] = useState("")
 
-
-function onSubmit(){
-    db.collection("posts").doc(props.route.params.id).update({
-        comentarios: firebase.firestore.FieldValue.arrayUnion({
-            owner: auth.currentUser.email,
-            texto: comentario
-        })
-    })
-    .then(() => {
-        setComentario("")
-    })
-    .catch(e => {
-        console.log(e);
-    })
+   function onSubmit(){
+        db.collection("posts").doc(props.route.params.id).update({
+              comentarios: firebase.firestore.FieldValue.arrayUnion({
+                  owner: auth.currentUser.email,
+                  texto: comentario
+                })
+           })
+                .then(() => {
+                      setComentario("")
+                })
+                .catch(e => {
+                       console.log(e);
+                })
 }
 
 useEffect(
@@ -42,30 +41,42 @@ useEffect(
         )
     },
     []
+
 )
 
-// return(
-// <View> {/* style={styles.container} */}
-// <Text> {/* style={styles.title} */} Comentar Post</Text>
-// {post.data ? <View> <Text {/* style={styles.texto} */} >{post.data.owner}</Text>
-// <Text {/* style={styles.texto} */}>{post.data.texto}</Text></View> : <ActivityIndicator></ActivityIndicator>
-// <TextInput
-// // style={styles.input}
-// placeholder="agregar un comentario"
-// onChange={text => setComentario(text)}
-// value={comentario}
-// />
+ return(
+<View style={styles.container}>
+   <Text style={styles.title}> Comentar Post</Text>
+   post.data 
+   ? <View> 
+    <Text style={styles.texto}  > {post.data.owner} </Text>
+    <Text  style={styles.texto} >{post.data.texto}</Text>
+    </View> 
+    : <ActivityIndicator />
 
-// <Pressable onPress={() => onSubmit()}>
-//     {/* <Text style={styles.buton}>Comentar</Text> */}
-// </Pressable>
-// <FlatList
-// data={comentarios}
-// keyExtractor={(item,index) => index.toString()}
-// renderItem={({item}) => (
-//     <View style={}
-// )
-// }
+   <TextInput
+   style={styles.input}
+   placeholder="agregar un comentario"
+   onChange={text => setComentario(text)}
+   value={comentario}/>
+
+   <Pressable onPress={() => onSubmit()}>
+    <Text style={styles.buton}>Comentar</Text>
+   </Pressable>
+
+<FlatList
+  data={comentarios}
+  keyExtractor={(item,index) => index.toString()}
+  renderItem={({item}) => (
+    <View>
+      <Text style={styles.texto}>{item.owner}</Text>
+      <Text style={styles.texto}>{item.texto}</Text>
+   </View>
+ )}
+ />
+ </View>
+ )
+}
 
 export default ComentarPost
-
+ 
