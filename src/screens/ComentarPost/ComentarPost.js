@@ -9,6 +9,7 @@ const [comentario, setComentario] = useState("")
 const [comentarios, setComentarios] = useState([])
 const [post, setPost] = useStete("")
 
+
 function onSubmit(){
     db.collection("posts").doc(props.route.params.id).update({
         comentarios: firebase.firestore.FieldValue.arrayUnion({
@@ -42,6 +43,7 @@ useEffect(
     },
     []
 )
+
 // return(
 // <View> {/* style={styles.container} */}
 // <Text> {/* style={styles.title} */} Comentar Post</Text>
