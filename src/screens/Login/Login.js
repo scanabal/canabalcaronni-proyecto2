@@ -19,7 +19,7 @@ function Login(props) {
          auth.signInWithEmailAndPassword(email,password)
     .then((response) => {
          setLogin(true); 
-          
+    //props nav nav homeMenu      
     })
     .catch(error => {
         if(error.code === "auth/invalid-email"){
