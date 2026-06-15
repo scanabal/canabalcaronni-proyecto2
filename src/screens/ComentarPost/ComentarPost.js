@@ -4,11 +4,11 @@ import { Pressable } from "react-native";
 import { Text, View, TextInput} from "react-native";
 import { ActivityIndicator, FlatList } from "react-native-web";
 
-function ComentarPost(props)
+function ComentarPost(props){
 const [comentario, setComentario] = useState("")
 const [comentarios, setComentarios] = useState([])
 const [post, setPost] = useStete("")
-
+}
 function onSubmit(){
     db.collection("posts").doc(props.route.params.id).update({
         comentarios: firebase.firestore.FieldValue.arrayUnion({
