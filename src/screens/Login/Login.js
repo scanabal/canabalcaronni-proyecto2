@@ -44,9 +44,7 @@ useEffect(
             }
         )
     },
-    []
-
-)
+    []);
 
 return (
     <View style={styles.container}  >  
