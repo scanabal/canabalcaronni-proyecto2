@@ -1,4 +1,4 @@
-import { auth } from "../../firebase/config";
+import { db, auth } from "../../firebase/config";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import { Text, View, TextInput, StyleSheet} from "react-native";
@@ -30,21 +30,6 @@ function Register (props){
     })
     }
 
-    //useEffect(
-//    () => {
-//        auth.onAuthStateChanged(
-//            user => {
-//                if (user) {
-//                // props.navigation.navigate("homeMenu")
-//                }
-//            }
-//        )
-//    },
-//    []
-
-//)
-
-
     return (
         <View  style={styles.container}>
          <Text style={styles.title}>Register</Text>
@@ -75,7 +60,7 @@ function Register (props){
 
         <Pressable style={styles.button} onPress={() => onSubmit(user, email, password)}>
             <Text style={styles.buttonText}>Registrarme</Text>
-                      </Pressable>
+        </Pressable>
            
          </View>
 

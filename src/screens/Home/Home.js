@@ -1,52 +1,56 @@
-// import { useState, useEffect } from 'react';
-// import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
-// import { db, auth } from '../../firebase/config';
-// import Post from './../../components/Post/Post'
+ import { useState, useEffect } from 'react';
+ import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
+ import { db, auth } from '../../firebase/config';
+ import Post from './../../components/Post/Post'
 
-// function Home(props) {
+ function Home(props) {
 
-//     const [posts, setPosts] = useState([]);
-//     const [loading, setLoading] = useState(true)
+     const [posts, setPosts] = useState([]);
+     const [loading, setLoading] = useState(true)
 
-//     useEffect(() => {
-//         auth.onAuthStateChanged(user => {
-//             if (!user) {
-//                 props.navigation.navigate('Login');
-//             }
-//         });}, [])
+     useEffect(() => {
+         auth.onAuthStateChanged(user => {
+             if (!user) {
+                 props.navigation.navigate('Login');
+             }
+         });}, [])
 
-//     useEffect(() => {
-//         db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
-//             let postsArray = [];
-//             docs.forEach(doc => {
-//                 postsArray.push({
-//                     id: doc.id,
-//                     data: doc.data() 
-//                 });
-//             });
-//             setPosts(postsArray)
-//             setLoading(false);
-//             }
-//         );}
-//         , []);
+     useEffect(() => {
+         db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
+             let postsArray = [];
+             docs.forEach(doc => {
+                 postsArray.push({
+                     id: doc.id,
+                     data: doc.data() 
+                 });
+             });
+             setPosts(postsArray)
+             setLoading(false);
+             }
+         );}
+         , []);
 
-//     return (
-//         <View>
-//             <Text>Home</Text>
-//             {loading 
-//             ? <ActivityIndicator/> 
-//             : <FlatList
-//                 data={posts}
-//                 keyExtractor={item => item.id.toString()}
-//                 renderItem={({ item }) => (
-//                     <Post post={item} navigation={props.navigation} />
-//                 )}
-//             />}
-//         </View>
-//     );
-// }
+     return (
+         <View style={styles.container}>
+             <Text>Home</Text>
+             {loading 
+             ? <ActivityIndicator/> 
+             : <FlatList
+                 data={posts}
+                 keyExtractor={item => item.id.toString()}
+                 renderItem={({ item }) => (
+                     <Post post={item} navigation={props.navigation} />
+                 )}
+             />}
+         </View>
+     );
+ }
 
-// // // //styles
-// // // //styles.container
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        padding: 10,
+    }
+})
 
-// export default Home;
+ export default Home;

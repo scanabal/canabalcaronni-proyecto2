@@ -34,19 +34,19 @@ function Login(props) {
     }
    
 
-//useEffect(
-//    () => {
-//        auth.onAuthStateChanged(
-//            user => {
-//                if (user) {
-//                // props.navigation.navigate("homeMenu")
-//                }
-//            }
-//        )
-//    },
-//    []
+useEffect(
+    () => {
+        auth.onAuthStateChanged(
+            user => {
+                if (user) {
+                props.navigation.navigate("homeMenu")
+                }
+            }
+        )
+    },
+    []
 
-//)
+)
 
 return (
     <View style={styles.container}  >  
@@ -74,8 +74,6 @@ return (
 
         <Pressable  style={styles.clickeable}  onPress={() => props.navigation.navigate("Register")}>
             <Text style={styles.boton}>No tengo cuenta, registrarme</Text>
-            
-            {/* XQ NO FUNCIONA ONPRESS */}
         </Pressable>
     </View>
 );
